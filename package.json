@@ -1,0 +1,19 @@
+{
+  "name": "clean-api-ts",
+  "version": "1.0.0",
+  "description": "clean node api typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dougphaney",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dougphaney/clean-api-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dougphaney/clean-api-ts/issues"
+  },
+  "homepage": "https://github.com/dougphaney/clean-api-ts#readme"
+}
