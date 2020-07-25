@@ -4,8 +4,8 @@
   "description": "clean node api typescript",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:staged": "jest"
+    "test": "jest --passWithNoTests",
+    "test:staged": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "dougphaney",
