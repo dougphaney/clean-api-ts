@@ -16,7 +16,7 @@ const makeEmailValidator = (): EmailValidator => {
   return new EmailValidatorStub()
 }
 
-/* primeira forma de validar
+/* segunda forma de validar
 const makeEmailValidatorWithError = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
     isValid (email: string): boolean {
@@ -93,6 +93,21 @@ describe('SignUp Controller', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
 
+  test('Should return 400 if password confirmation fails', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'any_email@email.com',
+        password: 'any_pawword',
+        passwordConfirmation: 'invalid_password'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
+  })
+
   test('Should return 400 if an invalid email is provided', () => {
     const { sut, emailValidatorStub } = makeSut()
     jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
@@ -124,7 +139,7 @@ describe('SignUp Controller', () => {
     expect(isValidSpy).toHaveBeenCalledWith('any_email@email.com')
   })
 
-  /* primeira forma de validar
+  /* segunda forma de validar
   test('Should return 500 if EmailValidator throw', () => {
     const emailValidatorStub = makeEmailValidatorWithError()
     const sut = new SignUpController(emailValidatorStub)
